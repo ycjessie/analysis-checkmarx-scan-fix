@@ -39,7 +39,6 @@ This repository contains a Python application that validates command ingestion p
 
 ### Command-Line Arguments and Connection String Injection
 
-
 **OS Access Violation**:
    - Malicious users can manipulate the input to delete critical system files.
    - Example: 
@@ -49,6 +48,8 @@ This repository contains a Python application that validates command ingestion p
      os.remove(files) #delete the file
      ```
    - **Solution**: Validate file path and files
+
+
 
 
 **Command-Line Argument**:
