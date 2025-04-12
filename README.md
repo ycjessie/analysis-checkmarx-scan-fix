@@ -44,8 +44,43 @@ This repository contains a Python application that validates command ingestion p
      ```python
      import os
      file_path = input("Enter file path: ")  # User-controlled input
-     os.remove(file_path)
+     os.remove(files) #delete the file
      ```
+   - **Solution**: Validate file path and files
+   ```python
+    import subprocess
+    import re
+    import sys
+    DIR_PATTERN = r"^\/(?!.*\/\/)([a-zA-Z._-]+\/?)*$"
+    FILE_PATTERN = r"^[^\s]+\.((xlsx|csv))$"
+    dir_path=sys.arg[1]
+    def validation(value, pattern, parameter_name):
+        if not re.fullmatch(pattern, str(value)):
+            raise ValueError(f"Invalid {parameter_name}: '{value}'")
+        return True
+    
+    # Validate directory path
+    try:
+        DIR = validation(dir_path, DIR_PATTERN, "dir_path")
+    # Validate each file in test_files
+        validated_files = []
+        for file_name in test_files:
+            try:
+                validated_file = validation(file_name, FILE_PATTERN, "file_name")
+                validated_files.append(validated_file)
+            except ValueError as e:
+                print(f"Skipping invalid file: {str(e)}")
+    except ValueError as e:
+        print(f"Validation error: {str(e)}")
+        sys.exit(1)
+    
+    # Use subprocess to delete the file
+    try:
+        subprocess.run(['rm', '-f', file_path], check=True)
+        print(f"Deleted file using rm command: {file_path}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error deleting file: {str(e)}")
+    ```
 **Command-Line Argument**:
 
    - Malicious users inject malicious inputs via `sys.argv`.
@@ -86,13 +121,11 @@ This repository contains a Python application that validates command ingestion p
    db_port = "5432"
 
    def validation(value, pattern, parameter_name):
-   """Generic regex validation function."""
         if not re.fullmatch(pattern, str(value)):
             raise ValueError(f"Invalid {parameter_name}: '{value}'")
         return True
-   # Validate db_port separately using an if-statement
+   # Validate db_port
    def validate_db_port(db_port):
-     """Validate the database port number."""
         if not db_port or not (0 < int(db_port) < 65536):
             raise ValueError(f"Invalid db_port: '{db_port}'. It must be an integer between 1 and 65535.")
         return int(db_port)
