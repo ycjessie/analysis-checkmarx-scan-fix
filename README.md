@@ -32,7 +32,6 @@ This repository contains a Python application that validates command ingestion p
 ### Checkmarx Integration
 
 - Runs Checkmarx Static Application Security Testing (SAST) scans
-- Supports ingestion mode for SARIF-format results normalization and deduplication
 - Provides detailed reports on security vulnerabilities
 
 ## Risks and Fixes
