@@ -38,7 +38,14 @@ This repository contains a Python application that validates command ingestion p
 ## Risks and Fixes
 
 ### Command-Line Arguments and Connection String Injection
-
+**OS Access Violation**:
+   - Malicious users can manipulate the input to delete critical system files.
+   - Example: 
+     ```python
+     import os
+     file_path = input("Enter file path: ")  # User-controlled input
+     os.remove(file_path)
+     ```
 **Command-Line Argument**:
 
    - Malicious users inject malicious inputs via `sys.argv`.
@@ -114,7 +121,7 @@ This repository contains a Python application that validates command ingestion p
      ```python
      dbcon=psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
      ```
-   - **Solution**: Use parameterized queries to prevent SQL injection.
+   - **Solution**: Use parameterized queries to prevent Database injection.
    ```python
    import psycopg2
    dbcon=database_connection(HOST,DATAASE,USER,PASSWORD,DB_PORT,RETION_KEY)
