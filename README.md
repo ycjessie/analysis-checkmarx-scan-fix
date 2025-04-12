@@ -14,9 +14,9 @@ This repository contains a Python application that validates command ingestion p
 
 ## Features
 ### Command Validation
-- Validates `sys.argv` inputs for `application_name`, `region_key`, and `configuration`
-- Ensures OS path inputs are sanitized to prevent access violations
-- Implements file validation to confirm the existence and integrity of files
+- Validates `sys.argv` inputs for `application_name`, `input_file`,`api_key`, `bucket_name`, `env_var`, `output_file` etc..
+- Sanitizes OS path inputs to prevent access violations 
+- Implements file validation to ensure that files exist and maintain their integrity
 
 ### Connection String Validation
 - Parses and validates database connection strings for secure ingestion
