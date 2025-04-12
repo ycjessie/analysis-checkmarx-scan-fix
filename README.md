@@ -43,6 +43,7 @@ This repository contains a Python application that validates command ingestion p
    The following code validates the `region` parameter using an `if ... in ... else` structure:
 
 
+```python
 allowed_regions = ['us-east-1', 'us-west-2'] 
 if args['region'] in allowed_regions:
     print(f"Region '{args['region']}' is allowed.")
@@ -58,5 +59,5 @@ else:
 - Example: 
   ```
   psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
-  ```
+  
 - **Solution**: Use parameterized queries to prevent SQL injection.
