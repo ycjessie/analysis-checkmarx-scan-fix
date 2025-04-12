@@ -46,7 +46,7 @@ This repository contains a Python application that validates command ingestion p
      file_path = input("Enter file path: ")  # User-controlled input
      os.remove(files) #delete the file
      ```
-  
+   - **Solution**: Validate file path and files
 **Command-Line Argument**:
 
    - Malicious users inject malicious inputs via `sys.argv`.
