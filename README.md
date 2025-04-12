@@ -30,11 +30,19 @@ This repository contains a Python application that validates command ingestion p
 
 ## Risks and Fixes
 
-### CCommand-Line Arguments and Connection String Injection
+### Command-Line Arguments and Connection String Injection
 1. **Command-Line Argument**:
    - Malicious users inject malicious inputs via sys.argv
    - Example:
         - Malicious env_var values that override environment settings or inject harmful data. Example: `python app.py --region "../../etc/passwd" --env_var "DROP DATABASE;"`
+        - Santitize using White List allowed_regions = ['us-east-1', 'us-west-2']
+
+if args['region'] in allowed_regions:
+# Proceed with valid region
+print(f"Region '{args['region']}' is allowed.")
+else:
+raise ValueError("Region not allowed")
+
 ### Connection String Ingestion Risks
 1. **Injection Attacks**:
    - Malicious users could inject harmful SQL commands via unsafe connection strings.
