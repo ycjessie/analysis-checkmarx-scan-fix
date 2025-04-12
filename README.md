@@ -38,26 +38,25 @@ This repository contains a Python application that validates command ingestion p
      - Malicious `env_var` values that override environment settings or inject harmful data.
      - Example: `python app.py --region "../../etc/passwd" --env_var "DROP DATABASE;"`
    - **Solution**: Sanitize inputs using a whitelist.
+     - Example: Validates the `region` parameter using an `if ... in ... else` structure:
 
-   ## Refactored Code Example
-   The following code validates the `region` parameter using an `if ... in ... else` structure:
-
-
-```python
-allowed_regions = ['us-east-1', 'us-west-2'] 
-if args['region'] in allowed_regions:
-    print(f"Region '{args['region']}' is allowed.")
-else:
-    raise ValueError("Region not allowed")
+     ```python
+     allowed_regions = ['us-east-1', 'us-west-2'] 
+     if args['region'] in allowed_regions:
+         print(f"Region '{args['region']}' is allowed.")
+     else:
+         raise ValueError("Region not allowed")
+     ```
 
 ---
 
 ### Connection String Ingestion Risks
 
 1. **Injection Attacks**:
-- Malicious users could inject harmful SQL commands via unsafe connection strings.
-- Example: 
-  ```
-  psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
-  
-- **Solution**: Use parameterized queries to prevent SQL injection.
+   - Malicious users could inject harmful SQL commands via unsafe connection strings.
+   - Example: 
+     ```python
+     psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
+     ```
+   - **Solution**: Use parameterized queries to prevent SQL injection.
+
