@@ -112,7 +112,7 @@ This repository contains a Python application that validates command ingestion p
    - Malicious users could inject harmful SQL commands via unsafe connection strings.
    - Example:
      ```python
-     psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
+     dbcon=psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
      ```
    - **Solution**: Use parameterized queries to prevent SQL injection.
    ```python
