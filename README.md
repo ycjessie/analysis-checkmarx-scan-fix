@@ -27,3 +27,15 @@ This repository contains a Python application that validates command ingestion p
 - Runs Checkmarx Static Application Security Testing (SAST) scans
 - Supports ingestion mode for SARIF-format results normalization and deduplication
 - Provides detailed reports on security vulnerabilities
+
+## Risks and Fixes
+
+### CCommand-Line Arguments and Connection String Injection
+1. **Command-Line Argument**:
+   - Malicious users inject malicious inputs via sys.argv
+   - Example:
+        - Malicious env_var values that override environment settings or inject harmful data. python app.py --region "../../etc/passwd" --env_var "DROP DATABASE;"
+### Connection String Ingestion Risks
+1. **Injection Attacks**:
+   - Malicious users could inject harmful SQL commands via unsafe connection strings.
+   - Example: `psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")`
