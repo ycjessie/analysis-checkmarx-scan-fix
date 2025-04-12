@@ -48,8 +48,11 @@ This repository contains a Python application that validates command ingestion p
      os.remove(files) #delete the file
      ```
    - **Solution**: Validate file path and files
-
-
+     ```python
+     import subprocess
+     import re
+     import sys
+     ```
 
 
 **Command-Line Argument**:
