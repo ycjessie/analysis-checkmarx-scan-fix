@@ -172,3 +172,22 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+# IDE and Editor Files
+.idea/
+.vscode/
+*.tags
+*.tags_sorted_by_file
+
+# Build Artifacts
+__pycache__/
+build/
+dist/
+
+# Operating System Files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Virtual Environment Directories
+.venv/
+env/
+ENV/
