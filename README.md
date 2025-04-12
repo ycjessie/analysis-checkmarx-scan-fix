@@ -53,7 +53,7 @@ This repository contains a Python application that validates command ingestion p
      import re
      import sys
      DIR_PATTERN = r"^\/(?!.*\/\/)([a-zA-Z._-]+\/?)*$"
-     FILE_PATTERN = r"^[^\s]+\.((xlsx|csv))$"
+     FILE_PATTERN = r"^[^\s]+\.((xlsx|csv|pdf|html))$"
      dir_path=sys.arg[1]
      def validation(value, pattern, parameter_name):
         if not re.fullmatch(pattern, str(value)):
@@ -78,7 +78,7 @@ This repository contains a Python application that validates command ingestion p
      # Use subprocess to delete the file
      try:
         subprocess.run(['rm', '-f', file_path], check=True)
-        print(f"Deleted file using rm command: {file_path}")
+        print(f"complete delete files: {file_path}")
      except subprocess.CalledProcessError as e:
         print(f"Error deleting file: {str(e)}")
      ```
