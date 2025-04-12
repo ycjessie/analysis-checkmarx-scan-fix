@@ -75,31 +75,31 @@ This repository contains a Python application that validates command ingestion p
    database = "my_database"
    user = "admin_user"
    password = "admin_password"
-   Region_VAR="us-west-2"
+   regin_var="us-west-2"
    db_port = "5432"
 
    def validation(value, pattern, parameter_name):
    """Generic regex validation function."""
-    if not re.fullmatch(pattern, str(value)):
-        raise ValueError(f"Invalid {parameter_name}: '{value}'")
-    return True
+        if not re.fullmatch(pattern, str(value)):
+            raise ValueError(f"Invalid {parameter_name}: '{value}'")
+        return True
    # Validate db_port separately using an if-statement
    def validate_db_port(db_port):
-      """Validate the database port number."""
-    if not db_port or not (0 < int(db_port) < 65536):
-          raise ValueError(f"Invalid db_port: '{db_port}'. It must be an integer between 1 and 65535.")
-      return int(db_port)
-    try:
+     """Validate the database port number."""
+        if not db_port or not (0 < int(db_port) < 65536):
+            raise ValueError(f"Invalid db_port: '{db_port}'. It must be an integer between 1 and 65535.")
+        return int(db_port)
+   try:
       # Validate all parameters using the standalone regex patterns
       HOST = validation(host, host_pattern, "host")
       DATABASE = validation(database, db_pattern, "database")
       USER = validation(user, user_pattern, "user")
-      REGION = validation(region, region_pattern, "region")
+      REGION_KEY = validation(region, region_pattern, "region")
       PASSWORD=validation(user, password_pattern, "password")
       DB_PORT = validate_db_port(db_port)
 
       print("All parameters are valid!")
-    except ValueError as e:
+   except ValueError as e:
       print(f"Validation db port error: {str(e)}")
       sys.exit(1)
    ```
