@@ -52,6 +52,35 @@ This repository contains a Python application that validates command ingestion p
      import subprocess
      import re
      import sys
+     DIR_PATTERN = r"^\/(?!.*\/\/)([a-zA-Z._-]+\/?)*$"
+     FILE_PATTERN = r"^[^\s]+\.((xlsx|csv))$"
+     dir_path=sys.arg[1]
+     def validation(value, pattern, parameter_name):
+        if not re.fullmatch(pattern, str(value)):
+            raise ValueError(f"Invalid {parameter_name}: '{value}'")
+        return True
+    
+     # Validate directory path
+     try:
+        DIR = validation(dir_path, DIR_PATTERN, "dir_path")
+     # Validate each file in test_files
+        validated_files = []
+        for file_name in test_files:
+            try:
+                validated_file = validation(file_name, FILE_PATTERN, "file_name")
+                validated_files.append(validated_file)
+            except ValueError as e:
+                print(f"Skipping invalid file: {str(e)}")
+     except ValueError as e:
+        print(f"Validation error: {str(e)}")
+        sys.exit(1)
+    
+     # Use subprocess to delete the file
+     try:
+        subprocess.run(['rm', '-f', file_path], check=True)
+        print(f"Deleted file using rm command: {file_path}")
+     except subprocess.CalledProcessError as e:
+        print(f"Error deleting file: {str(e)}")
      ```
 
 
