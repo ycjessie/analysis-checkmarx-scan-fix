@@ -39,7 +39,7 @@ This repository contains a Python application that validates command ingestion p
 
 ### Command-Line Arguments and Connection String Injection
 
-1. **Command-Line Argument**:
+**Command-Line Argument**:
 
    - Malicious users inject malicious inputs via `sys.argv`.
    - Example:
@@ -108,10 +108,32 @@ This repository contains a Python application that validates command ingestion p
 
 ### Connection String Ingestion Risks
 
-1. **Injection Attacks**:
+**Injection Attacks**:
    - Malicious users could inject harmful SQL commands via unsafe connection strings.
    - Example:
      ```python
      psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
      ```
    - **Solution**: Use parameterized queries to prevent SQL injection.
+   ```python
+   import psycopg2
+   dbcon=database_connection(HOST,DATAASE,USER,PASSWORD,DB_PORT,RETION_KEY)
+   def database_connection(host, db_name, db_user, db_password, db_port, region):
+    """
+    Function to establish a database connection.
+    """
+    try:
+        # Establish the database connection
+        dbcon = psycopg2.connect(
+            database=db_name,
+            host=host,
+            port=int(db_port),  # Ensure port is an integer
+            user=db_user,
+            password=db_password
+        )
+        print(f"Connected to the database successfully in region: {region}")
+        return dbcon
+    except psycopg2.Error as e:
+        print(f"Database connection error: {str(e)}")
+        return None  # Return None if the connection fails
+   ```
