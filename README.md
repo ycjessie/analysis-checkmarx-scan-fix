@@ -2,11 +2,14 @@
 
 Checkmarx scans to identify vulnerabilities in code and provides validation mechanisms for critical inputs
 
-Checkmarx Scan
 
 ## Overview
 
-This repository contains a Python application that validates command ingestion parameters, including `application_name`, `region_key`, `configuration`, OS-related file paths, and database connection strings. Security measures are implemented to prevent risks such as OS access violations, invalid file paths, and unsafe connection strings.Additionally, Checkmarx scans are integrated to identify and mitigate security vulnerabilities.
+This repository contains Python snippets designed to validate command ingestion parameters while ensuring robust security. The code snippets include validation for:
+- **Region Keys**
+- **Configuration Parameters**
+- **OS-Related File Paths**
+- **Database Connection Strings**
 
 ## Target Audience
 
@@ -17,7 +20,7 @@ This repository contains a Python application that validates command ingestion p
 
 ## Features
 
-### Command Validation
+### Input Validation:Command Validation
 
 - Validates `sys.argv` inputs for `application_name`, `input_file`,`api_key`, `bucket_name`, `env_var`, `output_file` etc..
 - Sanitizes OS path inputs to prevent access violations
@@ -29,10 +32,10 @@ This repository contains a Python application that validates command ingestion p
 - Prevents injection attacks by sanitizing user-provided connection strings
 - Supports validation for PostgreSQL, MySQL, and other database formats
 
-### Checkmarx Integration
+### Integration with Checkmarx Scans
 
-- Runs Checkmarx Static Application Security Testing (SAST) scans
-- Provides detailed reports on security vulnerabilities
+- Runs Checkmarx Static Application Security Testing (SAST) scans to identify and mitigate vulnerabilities
+- Ensures compliance with secure coding standards
 
 ## Risks and Fixes
 To prevent such attacks, you must validate and sanitize user inputs and restrict file operations to specific directories.
