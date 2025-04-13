@@ -35,7 +35,7 @@ This repository contains a Python application that validates command ingestion p
 - Provides detailed reports on security vulnerabilities
 
 ## Risks and Fixes
-
+To prevent such attacks, you must validate and sanitize user inputs and restrict file operations to specific directories.
 ### Command-Line Arguments and Connection String Injection
 
 **OS Access Violation**:
@@ -46,6 +46,12 @@ This repository contains a Python application that validates command ingestion p
      file_path = input("Enter file path: ")  # User-controlled input
      os.remove(files) #delete the file
      ```
+   - Execution:
+    ```python
+    # Simulating malicious input
+     file_path = "../../../../../../etc/passwd"
+     os.remove(file_path)  # Deletes /etc/passwd if permissions allow
+    ```
    - **Solution**: Validate file path and files
      ```python
      import subprocess
@@ -90,7 +96,6 @@ This repository contains a Python application that validates command ingestion p
      - Malicious `env_var` values that override environment settings or inject harmful data.
      - Example: `python app.py --region "../../etc/passwd" --env_var "DROP DATABASE;"`
    - **Solution**: Sanitize inputs using a whitelist.
-
      - Example: Validates the `region` parameter using an `if ... in ... else` structure:
 
      ```python
@@ -156,7 +161,7 @@ This repository contains a Python application that validates command ingestion p
      ```python
      dbcon=psycopg2.connect("dbname=test user=admin password=' OR '1'='1'")
      ```
-   - **Solution**: Use parameterized queries to prevent Database injection.
+   - **Solution**: After validation inputs,  Use parameterized queries to prevent Database injection.
    ```python
    import psycopg2
    dbcon=database_connection(HOST,DATAASE,USER,PASSWORD,DB_PORT,RETION_KEY)
