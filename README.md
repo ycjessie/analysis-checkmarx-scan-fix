@@ -48,7 +48,8 @@ To prevent such attacks, you must validate and sanitize user inputs and restrict
      ```
      - Execution: 
      ```python
-     
+     file_path = "../../../../../../etc/passwd"
+     os.remove(file_path)  # Deletes /etc/passwd if permissions allow
      ```
    <!-- - Execution:
      ```python
