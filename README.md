@@ -20,17 +20,23 @@ This repository contains Python snippets designed to validate command ingestion 
 
 ## Features
 
-### Input Validation:Command Validation
-
-- Validates `sys.argv` inputs for `application_name`, `input_file`,`api_key`, `bucket_name`, `env_var`, `output_file` etc..
+### Input Validation:
+- Ensures all input parameters are sanitized and conform to predefined formats (e.g., regex-based validation)
+- Prevents invalid or unsafe inputs from being processed
+<!-- - Command Validation  Validates `sys.argv` inputs for `application_name`, `input_file`,`api_key`, `bucket_name`, `env_var`, `output_file` etc..
 - Sanitizes OS path inputs to prevent access violations
-- Implements file validation to ensure that files exist and maintain their integrity
+- Implements file validation to ensure that files exist and maintain their integrity -->
 
-### Connection String Validation
-
+### Security Measures:
+- Protects against risks such as:
+  - **OS Access Violations**: Prevents unauthorized access to critical system files
+  - Path Traversal Attacks: Validates file paths to prevent directory traversal exploits
+  - Unsafe Database Connection Strings: Ensures database credentials and connection strings are secure
+<!-- 
+Connection String Validation
 - Parses and validates database connection strings for secure ingestion
 - Prevents injection attacks by sanitizing user-provided connection strings
-- Supports validation for PostgreSQL, MySQL, and other database formats
+- Supports validation for PostgreSQL, MySQL, and other database formats -->
 
 ### Integration with Checkmarx Scans
 
