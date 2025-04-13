@@ -32,6 +32,10 @@ This repository contains Python snippets designed to validate command ingestion 
   - **OS Access Violations**: Prevents unauthorized access to critical system files
   - **Path Traversal Attacks**: Validates file paths to prevent directory traversal exploits
   - **Unsafe Database Connection Strings**: Ensures PostgreSQL, MySQL, and other database formats credentials and connection strings are secure
+- Security Considerations:
+  - **Regex-Based Validation**: Validates input parameters such as application names, region keys, and configuration values
+  - **Path Traversal Prevention**: Ensures file paths are restricted to specific directories using absolute path resolution
+  - **Database Security**: anitizes database connection strings to prevent SQL injection and other vulnerabilities
 <!-- 
 Connection String Validation
 - Parses and validates database connection strings for secure ingestion
