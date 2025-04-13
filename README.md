@@ -46,12 +46,16 @@ To prevent such attacks, you must validate and sanitize user inputs and restrict
      file_path = input("Enter file path: ")  # User-controlled input
      os.remove(files) #delete the file
      ```
-   - Execution:
+     - Execution: 
+     ```python
+     
+     ```
+   <!-- - Execution:
      ```python
     # Simulating malicious input
      file_path = "../../../../../../etc/passwd"
      os.remove(file_path)  # Deletes /etc/passwd if permissions allow
-     ```
+     ``` -->
    - **Solution**: Validate file path and files
      ```python
      import subprocess
