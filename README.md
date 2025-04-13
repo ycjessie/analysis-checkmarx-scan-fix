@@ -57,13 +57,13 @@ To prevent such attacks, you must validate and sanitize user inputs and restrict
      file_path = "../../../../../../etc/passwd"
      os.remove(file_path)  # Deletes /etc/passwd if permissions allow
      ``` -->
-   - **Solution**: Validate file path and files
+   - **Solution**: Validate File Path and Files Using Regex
      ```python
      import subprocess
      import re
      import sys
      DIR_PATTERN = r"^\/(?!.*\/\/)([a-zA-Z._-]+\/?)*$"
-     FILE_PATTERN = r"^[^\s]+\.((xlsx|csv|pdf|html))$"
+     FILE_PATTERN = r"^[a-zA-Z0-9_\-]+\.((xlsx|csv|pdf|html))$"#alphanumeric characters with specific extensions
      dir_path=sys.arg[1]
      def validation(value, pattern, parameter_name):
         if not re.fullmatch(pattern, str(value)):
