@@ -47,11 +47,11 @@ To prevent such attacks, you must validate and sanitize user inputs and restrict
      os.remove(files) #delete the file
      ```
    - Execution:
-    ```python
+     ```python
     # Simulating malicious input
      file_path = "../../../../../../etc/passwd"
      os.remove(file_path)  # Deletes /etc/passwd if permissions allow
-    ```
+     ```
    - **Solution**: Validate file path and files
      ```python
      import subprocess
